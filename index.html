@@ -196,8 +196,9 @@ h1 {
         Join our learning community and grow your knowledge
     </p>
 
-    <a href="https://t.me/+J3FaZ7ybKotmYjE1" class="telegram-btn">
-        Join Telegram
+    <!-- Telegram Button with Timer -->
+    <a href="https://t.me/+J3FaZ7ybKotmYjE1" id="telegramBtn" class="telegram-btn">
+        Join Telegram (<span id="timer">10</span>s)
     </a>
 
     <p class="hindi-quote">
@@ -209,11 +210,33 @@ h1 {
             <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Disclaimer</a>
         </div>
         <div style="margin-top: 5px;">
-            This site is not part of Facebook™ or endorsed by Facebook™.
+            This site is not part of Facebook™️ or endorsed by Facebook™️.
         </div>
     </div>
 
 </div>
+
+<!-- JavaScript for 10s Timer & Auto Redirect -->
+<script>
+    let timeLeft = 10;
+    const timerElement = document.getElementById("timer");
+    const telegramUrl = "https://t.me/+J3FaZ7ybKotmYjE1";
+
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            // Optional: Track Facebook Pixel Lead event before redirecting
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead');
+            }
+            // Auto redirect to Telegram channel
+            window.location.href = telegramUrl;
+        }
+    }, 1000);
+</script>
 
 </body>
 </html>
